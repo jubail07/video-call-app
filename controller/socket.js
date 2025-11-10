@@ -12,7 +12,7 @@ function socketController(io) {
             rooms[roomId].push(socket.id);
             socket.join(roomId);
 
-            console.log(`${socket.id} joined room ${roomId}`);
+            // console.log(`${socket.id} joined room ${roomId}`);
 
             const otherUsers = rooms[roomId].filter(id => id !== socket.id);
             socket.emit('all-users', otherUsers);

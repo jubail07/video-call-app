@@ -233,7 +233,7 @@
     }
 
     .host-video {
-        height: auto;
+        height: 250px;
         margin-right: 0;
         margin-bottom: 10px;
     }

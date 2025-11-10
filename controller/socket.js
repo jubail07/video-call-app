@@ -36,8 +36,8 @@ function socketController(io) {
         });
 
         // Chat Broadcast
-        socket.on('chat', (msg) => {
-            io.emit('chat', msg);
+        socket.on('chat', ({room, msg}) => {
+            io.to(room).emit('chat', msg);
         });
 
         // User manually leaving a room

@@ -134,7 +134,10 @@ socket.on('all-users', async (users) => {
 
 socket.on('offer', async ({ from, offer }) => {
     const pc = createPeerConnection(from);
-    localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+    if (localStream && !pc.localTracksAdded) {
+        localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+        pc.localTracksAdded = true;
+    }
 
     await pc.setRemoteDescription(new RTCSessionDescription(offer));
     const answer = await pc.createAnswer();
